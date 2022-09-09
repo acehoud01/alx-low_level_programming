@@ -23,6 +23,5 @@ int main(void)
 		y = y + 1;
 	}
 
-	putchar('\n');
 	return (0);
 }
