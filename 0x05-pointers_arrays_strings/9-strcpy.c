@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strcpy = function prototype
+ * _strcpy - function prototype
  *
  * @dest: pointer to array destination
  * @src: pointer to copy string
