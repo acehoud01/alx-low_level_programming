@@ -24,7 +24,7 @@ int main(void)
 
 		j += i;
 
-		printf("%c", j);
+		printf("%c", i);
 	}
 	printf("%c\n", (2772 - j));
 
