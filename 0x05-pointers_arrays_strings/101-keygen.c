@@ -10,7 +10,7 @@
 
 int main(void)
 {
-	int i, j;
+	int i, j = 0;
 	time_t t;
 
 	srand((unsigned int) time(&t));
