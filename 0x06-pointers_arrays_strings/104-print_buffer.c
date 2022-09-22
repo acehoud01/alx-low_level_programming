@@ -15,7 +15,7 @@ void print_buffer(char *b, int size)
 
 	if (size < 0)
 	{
-		printf("\n");
+		_putchar('\n');
 		return;
 	}
 
@@ -41,7 +41,7 @@ void print_buffer(char *b, int size)
 			else
 				printf(".");
 		}
-		printf("\n");
+		_putchar('\n');
 		i += 10;
 	}
 }
