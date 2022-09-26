@@ -11,7 +11,7 @@ void print_chessboard(char (*a)[8])
 {
 	int i = 0, j;
 
-	while (i < 8)
+	for (; i < 8; i++)
 	{
 		j = 0;
 
@@ -19,7 +19,6 @@ void print_chessboard(char (*a)[8])
 		{
 			_putchar(*(*(i + a) + j));
 		}
-		i++;
 		_putchar('\0');
 	}
 }
