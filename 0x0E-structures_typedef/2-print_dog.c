@@ -1,5 +1,5 @@
 #include "dog.h"
-#include "stdio.h"
+#include <stdio.h>
 
 /**
  * print_dog - function prototype
