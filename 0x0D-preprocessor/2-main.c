@@ -2,7 +2,7 @@
 
 /**
  * main - entry point
- * prints the name of the file
+ *
  * Return: 0
  */
 
