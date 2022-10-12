@@ -1,7 +1,7 @@
 #include "function_pointers.h"
 
 /**
- * int_index - function prototype
+ * array_iterator - function prototype
  *
  * @array: array
  * @size: size of an array
@@ -9,14 +9,14 @@
  * Return: 0
  */
 
-int int_index(int *array, int size, int (*cmp)(int))
+void array_iterator(int *array, size_t size, void (*action)(int))
 {
 	unsigned int i;
 
-	if (cmp != NULL && array != NULL)
+	if action != NULL && array != NULL)
 	{
 		for (i = 0; i < size; i++)
-			cmp(array[i]);
+			action(array[i]);
 	
 	}
 }
