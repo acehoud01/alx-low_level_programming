@@ -5,7 +5,7 @@
  *
  * @array: array
  * @size: size of an array
- * @cmp: pointer to function
+ * @action: pointer to function
  * Return: 0
  */
 
@@ -17,6 +17,5 @@ void array_iterator(int *array, size_t size, void (*action)(int))
 	{
 		for (i = 0; i < size; i++)
 			action(array[i]);
-	
 	}
 }
