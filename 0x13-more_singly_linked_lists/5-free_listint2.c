@@ -4,20 +4,20 @@
  * free_listint2 - function prototype
  * @head: pointer to head list
  *
- * Return: 0
+ * Return: void
  */
 
 void free_listint2(listint_t **head)
 {
-	listint_t *tail;
+	listint_t *cursor;
 	listint_t **temp = head;
 
 	if (temp != NULL)
 	{
 		while (*head != NULL)
 		{
-			tail = *head;
-			free(tail);
+			cursor = *head;
+			free(cursor);
 			*head = (*head)->next;
 		}
 
