@@ -1,1 +1,1 @@
-arguments
+arguments argv argc
