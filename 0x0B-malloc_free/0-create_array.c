@@ -1,8 +1,8 @@
 #include "main.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 /**
- * create_array - function prototype
+ * create_array - functon prototype
  *
  * @size: array size
  * @c: array char to fill
@@ -11,22 +11,20 @@
 
 char *create_array(unsigned int size, char c)
 {
-	char *array = malloc(size);
+	char *s;
 
 	if (size == 0)
+		return (0);
+
+	s = malloc(size);
+
+	if (s == 0)
+		return (0);
+
+	while (size--)
 	{
-		return (NULL);
+		s[size] = c;
 	}
 
-	if (array == NULL)
-	{
-		return (NULL);
-	}
-
-	for (unsigned int i = 0; i < size; i++)
-	{
-		array[i] = c;
-	}
-
-	return (array);
+	return (s);
 }
