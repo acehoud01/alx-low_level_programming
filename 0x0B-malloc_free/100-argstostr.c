@@ -9,7 +9,7 @@ char *argstostr(int ac, char **av)
 	}
 
 	int len = 0;
-	
+
 	for (int i = 0; i < ac; i++)
 	{
 		if (av[i] != NULL)
@@ -26,12 +26,13 @@ char *argstostr(int ac, char **av)
 	}
 
 	int index = 0;
-	
+
 	for (int i = 0; i < ac; ++i)
 	{
 		if (av[i] != NULL)
 		{
 			int total_len = strlen(av[i]);
+
 			strncpy(result + index, av[i], total_len);
 			index += total_len;
 			result[index++] = '\n';
