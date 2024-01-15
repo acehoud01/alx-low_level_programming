@@ -4,41 +4,41 @@
 char *argstostr(int ac, char **av)
 {
 	if (ac == 0 || av == NULL)
-    	{	
-        	return (NULL);
-    	}
-
-    
-    size_t total_length = 0;
-    for (int i = 0; i < ac; ++i)
-    {
-        if (av[i] != NULL)
 	{
-            total_length += strlen(av[i]) + 1;
-        }
-    }
+		return (NULL);
+	}
 
-    char *result = (char *)malloc((total_length + 1) * sizeof(char));
-
-
-    if (result == NULL)
-    {
-        return (NULL);
-    }
-
-    size_t index = 0;
-    for (int i = 0; i < ac; ++i)
-    {
-        if (av[i] != NULL)
+	int len = 0;
+	
+	for (int i = 0; i < ac; i++)
 	{
-            size_t len = strlen(av[i]);
-            strncpy(result + index, av[i], len);
-            index += len;
-            result[index++] = '\n';
-        }
-    }
+		if (av[i] != NULL)
+		{
+			len += strlen(av[i]) + 1;
+		}
+	}
 
-    result[index] = '\0';
+	char *result = malloc((len + 1));
 
-    return (result);
+	if (result == NULL)
+	{
+		return (NULL);
+	}
+
+	int index = 0;
+	
+	for (int i = 0; i < ac; ++i)
+	{
+		if (av[i] != NULL)
+		{
+			int total_len = strlen(av[i]);
+			strncpy(result + index, av[i], total_len);
+			index += total_len;
+			result[index++] = '\n';
+		}
+	}
+
+	result[index] = '\0';
+
+	return (result);
 }
