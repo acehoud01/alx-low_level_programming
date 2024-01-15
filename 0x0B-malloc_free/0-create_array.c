@@ -2,10 +2,10 @@
 #include <stdio.h>
 
 /**
- * function prototype - create_array
+ * create_array - function prototype
  *
  * @size: array size
- * &c: array char to fill
+ * @c: array char to fill
  * Return: 0
  */
 
@@ -29,4 +29,4 @@ char *create_array(unsigned int size, char c)
 	}
 
 	return (array);
-	
+}
