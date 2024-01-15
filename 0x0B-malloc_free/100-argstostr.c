@@ -1,12 +1,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *argstostr(int ac, char **av) {
-    
-    if (ac == 0 || av == NULL)
-    {
-        return (NULL);
-    }
+char *argstostr(int ac, char **av)
+{
+	if (ac == 0 || av == NULL)
+    	{	
+        	return (NULL);
+    	}
 
     
     size_t total_length = 0;
