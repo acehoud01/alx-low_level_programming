@@ -1,6 +1,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * argstostr - function prototype
+ *
+ * @ac: counter
+ * @av: characters
+ * Return: 0;
+ */
+
 char *argstostr(int ac, char **av)
 {
 	if (ac == 0 || av == NULL)
