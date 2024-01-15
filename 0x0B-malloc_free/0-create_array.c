@@ -15,19 +15,18 @@ char *create_array(unsigned int size, char c)
 
 	if (size == 0)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	if (array == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
-	// Initialize each element of the array with the specified character
 	for (unsigned int i = 0; i < size; i++)
 	{
 		array[i] = c;
 	}
 
-	return array;
-}
+	return (array);
+	
