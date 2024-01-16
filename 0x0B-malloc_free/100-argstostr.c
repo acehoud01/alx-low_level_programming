@@ -36,10 +36,10 @@ char *argstostr(int ac, char **av)
 	for (int i = 0; i < ac; i++)
 	{
 		strcpy(p, av[i]);
-		p += streln(av[i]);
+		p += strlen(av[i]);
 		*p++ = '\n';
 	}
 	*p = '\0';
 
-	return (result)
+	return (result);
 }
