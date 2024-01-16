@@ -1,64 +1,97 @@
+#include "main.h"
 #include <stdlib.h>
-#include <string.h>
+
+void util(char **, char *);
+void create_word(char **, char *, int, int, int);
 
 /**
- * strtow - function prototype
+ * strtow - Function prototype
+ * @str: string
  *
- * @str: input characters
- * Return: 0
+ * Return: 0;
  */
-
 char **strtow(char *str)
 {
-	if (str == NULL || str[0] == '\0')
-	{
+	int i, flag, len;
+	char **words;
+
+	if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
 		return (NULL);
-	}
 
-	int count = 0;
-	int str_len = strlen(str);
-
-	for (int i = 0; i < str_len; i++)
+	i = flag = len = 0;
+	while (str[i])
 	{
-		if (str[i] == ' ' && (i == 0 || str[i - 1] != ' '))
+		if (flag == 0 && str[i] != ' ')
+			flag = 1;
+		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
 		{
-			count++;
+			flag = 0;
+			len++;
 		}
+		i++;
 	}
 
-	char **words = (char **)malloc((count + 1) * sizeof(char *));
+	len += flag == 1 ? 1 : 0;
+	if (len == 0)
+		return (NULL);
 
+	words = (char **)malloc(sizeof(char *) * (len + 1));
 	if (words == NULL)
-	{
 		return (NULL);
-	}
 
-	int index = 0;
-	int start = 0;
-	int len = 0;
-
-	for (int i = 0; i <= str_len; i++)
-	{
-		if (str[i] == ' ' || str[i] == '\0')
-		{
-			if (len > 0)
-			{
-				words[index] = (char *)malloc((len + 1) * sizeof(char));
-				
-				if (words[index] == NULL)
-				{
-					free(words);
-					return (NULL);
-				}
-				strncpy(words[index], str + start, len);
-				words[index][len] = '\0';
-				index++;
-			}
-			start = i + 1;
-			len = 0;
-		}
-	}
-	
-	words[count] = NULL;
+	util(words, str);
+	words[len] = NULL;
 	return (words);
+}
+
+/**
+ * util - function
+ * @words: the strings array
+ * @str: the string
+ */
+void util(char **words, char *str)
+{
+	int i, j, start, flag;
+
+	i = j = flag = 0;
+	while (str[i])
+	{
+		if (flag == 0 && str[i] != ' ')
+		{
+			start = i;
+			flag = 1;
+		}
+
+		if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+		{
+			create_word(words, str, start, i, j);
+			j++;
+			flag = 0;
+		}
+
+		i++;
+	}
+
+	if (flag == 1)
+		create_word(words, str, start, i, j);
+}
+
+/**
+ * create_word - function prototype
+ * @words: array string
+ * @str: the string
+ * @start: the starting index of the word
+ * @end: the stopping index of the word
+ * @index: the index of the array to insert the word
+ */
+void create_word(char **words, char *str, int start, int end, int index)
+{
+	int i, j;
+
+	i = end - start;
+	words[index] = (char *)malloc(sizeof(char) * (i + 1));
+
+	for (j = 0; start < end; start++, j++)
+		words[index][j] = str[start];
+	words[index][j] = '\0';
 }
