@@ -1,45 +1,49 @@
+#include "main.h"
 #include <stdlib.h>
-#include <string.h>
 
 /**
- * argstostr - function prototype
+ * argstostr - concatenates all the arguments of your program.
+ * @ac: count
+ * @av: vector
  *
- * @ac: counter
- * @av: characters
- * Return: 0;
+ * Return: 0
  */
-
 char *argstostr(int ac, char **av)
 {
-        if (ac == 0 || av == NULL)
-        {
-                return (NULL);
-        }
+	char *str, *s;
+	int i, j, k, len = 0;
 
-        int total_len = 0;
+	if (ac == 0 || av == NULL)
+		return (NULL);
 
-        for (int i = 0; i < ac; i++)
-        {
-                total_len += strlen(av[i]) + 1;
-        }
-        total_len++;
+	for (i = 0; i < ac; i++)
+	{
+		s = av[i];
+		j = 0;
 
-        char *result = (char *)malloc(total_len * sizeof(char));
+		while (s[j++])
+			len++;
+		len++;
+	}
 
-        if (result == NULL)
-        {
-                return (NULL);
-        }
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
+		return (NULL);
 
-        char *p = result;
+	for (i = 0, j = 0; i < ac && j < len; i++)
+	{
+		s = av[i];
+		k = 0;
 
-        for (int i = 0; i < ac; i++)
-        {
-                strcpy(p, av[i]);
-                p += strlen(av[i]);
-                *p++ = '\n';
-        }
-        *p = '\0';
+		while (s[k])
+		{
+			str[j] = s[k];
+			k++;
+			j++;
+		}
+		str[j++] = '\n';
+	}
+	str[j] = '\0';
 
-        return (result);
+	return (str);
 }
