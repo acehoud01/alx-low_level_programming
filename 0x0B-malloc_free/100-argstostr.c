@@ -16,38 +16,30 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 	}
 
-	int len = 0;
+	int total_len = 0;
 
 	for (int i = 0; i < ac; i++)
 	{
-		if (av[i] != NULL)
-		{
-			len += strlen(av[i]) + 1;
-		}
+		total_len += strlen(av[i]) + 1;
 	}
+	total_len++;
 
-	char *result = malloc((len + 1));
+	char *result = (char *)malloc(total_len * sizeof(char));
 
 	if (result == NULL)
 	{
 		return (NULL);
 	}
 
-	int index = 0;
+	char *p = result;
 
-	for (int i = 0; i < ac; ++i)
+	for (int i = 0; i < ac; i++)
 	{
-		if (av[i] != NULL)
-		{
-			int total_len = strlen(av[i]);
-
-			strncpy(result + index, av[i], total_len);
-			index += total_len;
-			result[index++] = '\n';
-		}
+		strcpy(p, av[i]);
+		p += streln(av[i]);
+		*p++ = '\n';
 	}
+	*p = '\0';
 
-	result[index] = '\0';
-
-	return (result);
+	return (result)
 }
