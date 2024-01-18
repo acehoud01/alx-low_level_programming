@@ -2,35 +2,77 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include <limits.h>
+
+/**
+ * multiply_numbers - function
+ *
+ * @num1: first input
+ * @num2: second input
+ *
+ * Return: num1 * num2
+ */
+
+int multiply_numbers(int num1, int num2)
+{
+	return (num1 * num2);
+}
+
+/**
+ * is_positive_integer - function
+ *
+ * @num: input
+ * Return: 0
+ */
+
+int is_positive_integer(const char *num)
+{
+	while (*num)
+	{
+		if (!isdigit(*num))
+		{
+			return (0);
+		}
+        }
+	num++;
+
+	return (1);
+}
 
 /**
  * main - entry point
  *
- * @argc: number of args
- * @argv: couting
+ * @argc: args count
+ * @argv: args vector
  * Return: 0
  */
 
 int main(int argc, char *argv[])
 {
-	unsigned long mul;
-	int i, j;
-
 	if (argc != 3)
-	{ printf("Error\n");
-	exit(98); }
-
-	for (i = 1; i < argc; i++)
 	{
-		for (j = 0; argv[i][j] != '\0'; j++)
-		{
-			if (!isdigit(argv[i][j]))
-			{ printf("Error\n");
-			exit(98); }
-		}
+		printf("Error\n");
+		return (98);
 	}
-	mul = atol(argv[1]) * atol(argv[2]);
-	printf("%lu\n", mul);
+
+	char *endptr;
+	int num1 = strtol(argv[1], &endptr, 10);
+
+	if (*endptr != '\0' || !is_positive_integer(argv[1]))
+	{
+		printf("Error\n");
+		return (98);
+	}
+
+	int num2 = strtol(argv[2], &endptr, 10);
+
+	if (*endptr != '\0' || !is_positive_integer(argv[2]))
+	{
+		printf("Error\n");
+		return (98);
+	}
+
+	int result = multiply_numbers(num1, num2);
+
+	printf("%d\n", result);
 	return (0);
 }
