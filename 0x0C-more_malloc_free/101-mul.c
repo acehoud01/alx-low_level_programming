@@ -1,50 +1,35 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <limits.h>
 
 /**
- * realloc - function prototype
+ * main - entry point
  *
- * @ptr: pointer
- * @old_size: to copy
- * @new_size: new copy
- * Return: new_ptr
+ * @argc: number of args
+ * @argv: couting
+ * Return: 0
  */
 
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+int main(int argc, char *argv[])
 {
-	if (new_size == old_size)
+	unsigned long mul;
+	int i, j;
+
+	if (argc != 3)
+	{ printf("Error\n");
+	exit(98); }
+
+	for (i = 1; i < argc; i++)
 	{
-		return (ptr);
+		for (j = 0; argv[i][j] != '\0'; j++)
+		{
+			if (argv[i][j] > '9' || argv[i][j] < '0')
+			{ printf("Error\n");
+			exit(98); }
+		}
 	}
-
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
-		return (NULL);
-	}
-
-	if (ptr == NULL)
-	{
-		return (malloc(new_size));
-	}
-
-	void *new_ptr = malloc(new_size);
-
-	if (new_ptr == NULL)
-	{
-		return (NULL);
-	}
-
-	if (ptr != NULL)
-	{
-		unsigned int size_to_copy = (old_size < new_size) ? old_size : new_size;
-
-		memcpy(new_ptr, ptr, size_to_copy);
-	}
-
-	free(ptr);
-
-	return (new_ptr);
+	mul = atol(argv[1]) * atol(argv[2]);
+	printf("%lu\n", mul);
+return (0);
 }
