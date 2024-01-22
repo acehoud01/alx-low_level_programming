@@ -2,12 +2,12 @@
 #include <stdio.h>
 
 /**
- * init_dog - function protype
+ * init_dog - function
  *
- * @d: pointer to dog struct
- * @name: pointer to char
- * @age: our dog age
- * @owner: pointer to char
+ * @d: dog
+ * @name: dog name
+ * @age: dog age
+ * @owner: dog owner
  */
 
 void init_dog(struct dog *d, char *name, float age, char *owner)
