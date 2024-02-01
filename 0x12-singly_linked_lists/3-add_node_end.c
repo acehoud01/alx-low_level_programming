@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * add_node - function prototype
+ * add_node_end - function prototype
  *
  * @head: start
  * @str: list
@@ -32,7 +32,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	{
 		list_t *current = *head;
 
-		while (cuurent-> != NULL)
+		while (current->next != NULL)
 		{
 			current = current->next;
 		}
