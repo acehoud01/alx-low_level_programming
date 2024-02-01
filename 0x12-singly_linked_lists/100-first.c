@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 /**
+ * my_print_before_main - function before function`
  * first print before main
  */
 
