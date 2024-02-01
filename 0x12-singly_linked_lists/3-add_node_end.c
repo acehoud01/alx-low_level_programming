@@ -10,19 +10,19 @@
 
 list_t *add_node_end(list_t **head, const char *str)
 {
-        list_t *i = malloc(sizeof(list_t));
+	list_t *i = malloc(sizeof(list_t));
 
-        if (i == NULL)
+	if (i == NULL)
                 return (NULL);
 
-        i->str = strdup(str);
-        if (i->str == NULL)
-        {
-                free(i);
-                return (NULL);
-        }
-        i->len = strlen(str);
-        i->next = NULL;
+	i->str = strdup(str);
+	if (i->str == NULL)
+	{
+		free(i);
+		return (NULL);
+	}
+	i->len = strlen(str);
+	i->next = NULL;
 
 	if (*head == NULL)
 	{
