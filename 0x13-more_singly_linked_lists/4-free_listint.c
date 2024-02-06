@@ -1,7 +1,7 @@
 #include "lists.h"
 
 /**
- * free_list - function ptototype
+ * free_listint - function ptototype
  *
  * @head: current nodes
  * Return: 0
