@@ -10,12 +10,13 @@
 
 listint_t *add_nodeint(listint_t **head, const int n)
 {
-	if (head == NULL)
+	listint_t *new_node = createNode(n);
+
+	if (new_node == NULL)
 		return (NULL);
 
-	listint_t *newNode = createNode(n);
+	new_node->next = *head;
+	*head = new_node;
 
-	newNode->next = *head;
-	*head = newNode;
-	return (newNode);
+	return (new_node);
 }
