@@ -26,15 +26,6 @@ typedef struct listint_s
  * Return: 0
  */
 
-listint_t *createNode(int n)
-{
-	listint_t *newNode = (listint_t *)malloc(sizeof(listint_t));
-
-	newNode->n = n;
-	newNode->next = NULL;
-	return (newNode);
-}
-
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
 listint_t *add_nodeint(listint_t **head, const int n);
