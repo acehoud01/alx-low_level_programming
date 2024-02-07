@@ -1,56 +1,52 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - prints a listint_t linked list
+ * print_listint_safe - Prints a listint_t list, even if it has a loop.
  *
- * @head: pointer to the head of the list
- * Return: the number of nodes in the list
+ * @head: Pointer to the head of the list.
+ * Return: The number of nodes in the list.
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	size_t count = 0;
-	const listint_t *slow, *fast, *loop;
+	const listint_t *slow = head;
+	size_t nodes = 0;
+	const listint_t **addr_array = malloc(sizeof(listint_t *) * 1024);
 
-	if (head == NULL)
-		return (0);
-
-	slow = fast = head;
-
-	while (slow && fast && fast->next)
+	if (!addr_array)
 	{
-		slow = slow->next;
-		fast = fast->next->next;
+		exit(98);
+	}
 
-		if (slow == fast)
+	while (slow != NULL)
+	{
+		for (size_t i = 0; i < nodes; i++)
 		{
-			loop = slow;
-			do
+			if (slow == addr_array[i])
 			{
-				count++;
-				slow = slow->next;
-			} while (slow != loop);
-			break;
+				printf("-> [%p] %d\n", (void *)slow, slow->n);
+				free(addr_array);
+				return (nodes);
+			
+			}
+		}
+
+		printf("[%p] %d\n", (void *)slow, slow->n);
+		addr_array[nodes] = slow;
+		slow = slow->next;
+		nodes++;
+
+		if (nodes % 1024 == 0)
+		{
+			const listint_t **new_addr_array = realloc(addr_array, sizeof(listint_t *) * (nodes + 1024));
+			if (!new_addr_array)
+			{
+				free(addr_array);
+				exit(98);
+			}
+			addr_array = new_addr_array;
 		}
 	}
 
-	if (count == 0)
-	{
-		while (head)
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-			count++;
-		}
-	}
-	else
-	{
-		while (head != loop)
-		{
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
-			count++;
-		}
-		printf("-> [%p] %d\n", (void *)loop, loop->n);
-	}
-	return (count);
+	free(addr_array);
+	return (nodes);
 }
