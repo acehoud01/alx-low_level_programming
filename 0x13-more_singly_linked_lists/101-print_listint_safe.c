@@ -9,21 +9,23 @@
 
 size_t print_listint_safe(const listint_t *head)
 {
+	const listint_t *slow = head;
+	const listint_t *fast = head;
 	size_t count = 0;
-	long int def;
 
-	while (head)
+	while (slow != NULL && fast != NULL && fast->next != NULL)
 	{
-		def = head - head->next;
+		printf("[%p] %d\n", (void *)slow, slow->n);
 		count++;
-		printf("[%p] %d\n", (void *)head, head->n);
 
-		if (def > 0)
-			head = head->next;
-		else
+		slow = slow->next;
+		fast = fast->next->next;
+
+		if (slow == fast)
 		{
-			printf("-> [%p] %d\n", (void *)head->next, head->next->n);
-			break;
+			printf("-> [%p] %d\n", (void *)slow, slow->n);
+			printf("-> [%p] %d\n", (void *)fast->next, fast->next->n);
+			exit(98);
 		}
 	}
 	return (count);
