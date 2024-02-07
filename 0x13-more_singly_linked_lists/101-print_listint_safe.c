@@ -8,45 +8,28 @@
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow = head;
-	size_t nodes = 0;
-	const listint_t **addr_array = malloc(sizeof(listint_t *) * 1024);
+	size_t node_count = 0;
+	const listint_t *visited[1024];
+	int i;
 
-	if (!addr_array)
+	for (i = 0; i < 1024; i++)
 	{
+		visited[i] = NULL;
+	}
+
+	while (head && !visited[(size_t)head])
+	{
+		printf("Node %zu: [%d] @ %p\n", node_count, head->n, (void *)head);
+		visited[(size_t)head] = head;
+		node_count++;
+		head = head->next;
+	}
+
+	if (head)
+	{
+		printf("-> [SUSPECT] %p (Infinity)\n", (void *)head);
+		free_listint((listint_t *)head);
 		exit(98);
 	}
-
-	while (slow != NULL)
-	{
-		for (size_t i = 0; i < nodes; i++)
-		{
-			if (slow == addr_array[i])
-			{
-				printf("-> [%p] %d\n", (void *)slow, slow->n);
-				free(addr_array);
-				return (nodes);
-			
-			}
-		}
-
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		addr_array[nodes] = slow;
-		slow = slow->next;
-		nodes++;
-
-		if (nodes % 1024 == 0)
-		{
-			const listint_t **new_addr_array = realloc(addr_array, sizeof(listint_t *) * (nodes + 1024));
-			if (!new_addr_array)
-			{
-				free(addr_array);
-				exit(98);
-			}
-			addr_array = new_addr_array;
-		}
-	}
-
-	free(addr_array);
-	return (nodes);
+	return (node_count);
 }
