@@ -10,7 +10,7 @@
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t count = 0;
-	int def;
+	long int def;
 
 	if (head == NULL)
 		exit(98);
@@ -25,7 +25,7 @@ size_t print_listint_safe(const listint_t *head)
 			head = head->next;
 		else
 		{
-			printf("-> [%p] %d\n", (void *)head->next, head->n);
+			printf("-> [%p] %d\n", (void *)head, head->n);
 			break;
 		}
 	}
