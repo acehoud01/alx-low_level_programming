@@ -1,13 +1,13 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - function prototype
+ * find_listint_loop - function prototype
  *
  * @head: Pointer to the head of the list.
  * Return: The number of nodes in the list.
  */
 
-size_t free_listint_safe(listint_t **h);
+listint_t *find_listint_loop(listint_t *head)
 {
 	listint_t *slow = head;
 	listint_t *fast = head;
