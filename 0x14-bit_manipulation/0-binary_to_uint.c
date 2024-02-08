@@ -9,17 +9,19 @@
 
 unsigned int binary_to_uint(const char *b)
 {
-	int i;
-	unsigned int value = 0;
+	int power = 0;
+	unsigned int result = 0;
 
-	if (!b)
-		return (0);
-
-	for (i = 0; b[i]; i++)
+	for (; *b; b++)
 	{
-		if (b[i] < '0' || b[i] > '1')
+		char c = *b;
+
+		if (c != '0' && c != '1')
+		{
 			return (0);
-		value = 2 * value + (b[i] - '0');
+		}
+		result |= (c - '0') << power;
+		power++;
 	}
-	return (value);
+	return (result);
 }
