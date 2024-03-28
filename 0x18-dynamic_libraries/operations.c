@@ -15,33 +15,33 @@ int add(int a, int b)
 }
 
 /**
- * subtract - function
+ * sub - function
  *
  * @a: first num
  * @b: second num
  * Return: 0
  */
 
-int subtract(int a, int b)
+int sub(int a, int b)
 {
 	return (a - b);
 }
 
 /**
- * multiply - function
+ * mul - function
  *
  * @a: 1st num
  * @b: 2nd num
  * Return: 0
  */
 
-int multiply(int a, int b)
+int mul(int a, int b)
 {
 	return (a * b);
 }
 
 /**
- * divide - function
+ * div - function
  *
  * @a: 2st num
  * @b: 2nd num
@@ -53,6 +53,23 @@ int divide(int a, int b)
 	if (b != 0)
 	{
 		return (a / b);
+	}
+	return (-1);
+}
+
+/**
+ * mod - function
+ *
+ * @a: first numer
+ * @b: second nun
+ * Return: 0
+ */
+
+int mod(int a, int b)
+{
+	if (b != 0)
+	{
+		return (a % b);
 	}
 	return (-1);
 }

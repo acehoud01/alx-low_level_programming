@@ -1,18 +1,37 @@
-from ctypes import CDLL, c_int
+import random
+import ctypes
 
-lib = CDLL("./100-operations.so")
+# Load the shared library
+cops = ctypes.CDLL('./100-operations.so')
 
-# Set the return types of the C functions
-lib.add.restype = c_int
-lib.subtract.restype = c_int
-lib.multiply.restype = c_int
-lib.divide.restype = c_int
+cops.add.argtypes = [ctypes.c_int, ctypes.c_int]
+cops.add.restype = ctypes.c_int
 
-# Call the functions
-a = 10
-b = 5
+cops.sub.argtypes = [ctypes.c_int, ctypes.c_int]
+cops.sub.restype = ctypes.c_int
 
-print(f"{a} + {b} = {lib.add(a, b)}")
-print(f"{a} - {b} = {lib.subtract(a, b)}")
-print(f"{a} * {b} = {lib.multiply(a, b)}")
-print(f"{a} / {b} = {lib.divide(a, b)}")
+cops.mul.argtypes = [ctypes.c_int, ctypes.c_int]
+cops.mul.restype = ctypes.c_int
+
+cops.divide.argtypes = [ctypes.c_int, ctypes.c_int]
+cops.divide.restype = ctypes.c_int
+
+cops.mod.argtypes = [ctypes.c_int, ctypes.c_int]
+cops.mod.restype = ctypes.c_int
+
+a = random.randint(-111, 111)
+b = random.randint(-111, 111)
+
+print("{} + {} = {}".format(a, b, cops.add(a, b)))
+print("{} - {} = {}".format(a, b, cops.sub(a, b)))
+print("{} x {} = {}".format(a, b, cops.mul(a, b)))
+
+if b != 0:
+    print("{} / {} = {}".format(a, b, cops.divide(a, b)))
+else:
+    print("Division by zero is not allowed.")
+
+if b != 0:
+    print("{} % {} = {}".format(a, b, cops.mod(a, b)))
+else:
+    print("Modulo by zero is not allowed.")
