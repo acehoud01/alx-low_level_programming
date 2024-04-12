@@ -3,7 +3,7 @@
 /**
  * hash_djb2 - Implements the djb2 hash algorithm.
  *
- * @@str: The input string to hash.
+ * @str: The input string to hash.
  * Return: The computed hash value.
  */
 
